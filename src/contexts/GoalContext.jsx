@@ -8,7 +8,7 @@ export const GoalProvider = ({ children }) => {
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState(null);
 
-  const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5003';
+  const API_URL = import.meta.env.VITE_API_URL || '';
   
   // Function to refresh stats
   const refreshStats = useCallback(async () => {

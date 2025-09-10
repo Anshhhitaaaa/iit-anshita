@@ -7,7 +7,7 @@ import transactionRoutes from './routes/transaction.js';
 import goalRoutes from './routes/goal.js';
 
 // Load environment variables
-dotenv.config({ path: '../.env' });
+dotenv.config();
 
 // Create Express app
 const app = express();
@@ -32,8 +32,13 @@ mongoose.connect(MONGODB_URI)
   .then(() => console.log('MongoDB Connected'))
   .catch(err => console.error('MongoDB connection error:', err));
 
-// Start server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+// For local development
+if (process.env.NODE_ENV !== 'production') {
+  const PORT = process.env.PORT || 5000;
+  app.listen(PORT, () => {
+    console.log(`Server running on port ${PORT}`);
+  });
+}
+
+// Export the Express API for Vercel serverless deployment
+export default app;

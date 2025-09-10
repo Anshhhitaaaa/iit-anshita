@@ -30,7 +30,7 @@ export const AuthProvider = ({ children }) => {
     const checkAuth = async () => {
       if (token) {
         try {
-          const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5003';
+          const API_URL = import.meta.env.VITE_API_URL || '';
           const response = await axios.get(`${API_URL}/api/auth/me`);
           setUser(response.data.data);
         } catch (error) {
@@ -47,7 +47,7 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (email, password) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5003';
+      const API_URL = import.meta.env.VITE_API_URL || '';
       const response = await axios.post(`${API_URL}/api/auth/login`, {
         email,
         password
@@ -71,7 +71,7 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (name, email, password) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5003';
+      const API_URL = import.meta.env.VITE_API_URL || '';
       const response = await axios.post(`${API_URL}/api/auth/register`, {
         name,
         email,
